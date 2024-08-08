@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-images">
+                <img src="1.jpeg" alt="Left Image" class="header-image">
+            </div>
+            <div>
+            <h1>Happy Birthday Tinkuluu!</h1>
+            <h2>Love You 😂😂</h2>
+            </div>
+            <div class="header-images">
+                <img src="2.jpeg" alt="Right Image" class="header-image">
+            </div>
+        </header>
+        <main>
+            <button id="surpriseButton">Start Music</button>
+        </main>
+    </div>
+    <audio id="backgroundMusic" src="song.mp3" loop></audio> <!-- Audio element -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const surpriseButton = document.getElementById('surpriseButton');
+            const backgroundMusic = document.getElementById('backgroundMusic');
+
+            // Function to update button text based on music state
+            function updateButtonText() {
+                if (backgroundMusic.paused) {
+                    surpriseButton.textContent = 'Surprise';
+                } else {
+                    surpriseButton.textContent = 'Chalu Chalu';
+                }
+            }
+
+            // Set initial button text
+            updateButtonText();
+
+            surpriseButton.addEventListener('click', () => {
+                if (backgroundMusic.paused) {
+                    backgroundMusic.play().catch(error => {
+                        console.error('Error playing audio:', error);
+                    });
+                } else {
+                    backgroundMusic.pause();
+                }
+                // Update button text after toggling
+                updateButtonText();
+            });
+        });
+    </script>
+</body>
+</html>
